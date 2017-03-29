@@ -1,5 +1,7 @@
 ﻿<#
 
+Use> ps convertmovie.ps1 "Path"
+
 Used to recursively traverse through a directory looking for movie files and when found converts them to MPEG4 format and adds metadata
 
 This was created so that all our family movies can be viewed and played in Amazon Photos
@@ -14,7 +16,7 @@ Throw "You must supply a value for the path"
 }
 
 
-Get-ChildItem -Path $path\* -Include *.mts, *.MOV, *.avi -Recurse -Force | 
+Get-ChildItem -Path $path\* -Include *.mts, *.MOV, *.avi, *.wmv -Recurse -Force | 
 foreach-object { 
     $newfile = $_.Path + $_.DirectoryName + "\" + $_.BaseName + "-convert.mp4"; 
     $time = $_.LastWriteTime.ToString("yyyy:MM:dd HH:mm:ss");
